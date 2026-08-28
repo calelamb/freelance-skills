@@ -1,52 +1,71 @@
 ---
 name: quote-job
-description: Produce an hourly quote for a software job grounded in measured evidence — git-history velocity calibration and analogy pricing — instead of AI intuition. Use when the user needs to quote, estimate, or price work for a client, or asks "how long will this take?"
+description: Use when the user needs to quote, estimate, price, or answer "how long will this take?" for client software work — especially when a prior estimate or client budget is already on the table, or the request comes with deadline pressure.
 ---
 
 # Quote a job (without trusting the AI's gut)
 
-Your effort intuitions are unanchored. You have never billed an hour. The freelancer's measured history has. This skill exists because the default failure mode of AI estimation is a confident number derived from nothing — and a freelancer who bills on that number eats the difference.
+Your effort intuitions are unanchored — you have never billed an hour. The freelancer's measured history has. The default failure mode of AI estimation is a confident number derived from nothing; a freelancer who bills on that number eats the difference.
 
 ## Rules that override your defaults
 
-1. **Never produce a number from general knowledge.** Every line item must cite its evidence: an analogous piece of past work with its measured time, or a line-count comparison to a similar existing component. If you can't ground it, label it `LOW-CONFIDENCE` visibly — do not fake precision.
-2. **Never read someone else's estimate before writing your own.** If a prior estimate exists in the conversation or repo, write your number first, then compare and explain divergence. Anchoring makes your estimate worthless as a second opinion.
-3. **The user's velocity, not a generic developer's.** A freelancer running concurrent AI sessions has 2–5× the throughput of textbook estimates on patterned work — and 1× on everything wall-clock-bound. Calibrate from their history, not from folklore.
+1. **No number without evidence.** Every line item cites its source: an analogous piece of past work with its measured time, or a size comparison to an existing component. Can't ground it? Label it `LOW-CONFIDENCE` in the table — never fake precision.
+2. **Write your number before reading theirs.** If a client budget or prior estimate is in the conversation, produce your estimate first, *then* compare and explain the divergence. Anchoring makes a second opinion worthless.
+3. **This freelancer's velocity, not a generic developer's.** Someone running parallel AI sessions ships patterned work 2–5× faster than textbook rates — and exactly 1× on anything wall-clock-bound. Calibrate from their history.
+4. **No repo? Calibrate from the freelancer instead.** Ask for repo access, and in the same message ask: "What's the closest thing you've built to this, and how long did it take you?" Their answer is evidence; use it. If neither is available by the deadline, still deliver a range — every line marked `LOW-CONFIDENCE`, with a one-line note that the number tightens once the repo is in hand. A late quote is a lost job; a labeled provisional quote is honest.
 
 ## Procedure
 
 ### 1. Scope inventory
-Break the ask into concrete tasks. For each: what exists already, what's new, what's modified. If the repo is available, verify claims against the code — do not trust the ticket/brief's description of the current state (briefs are wrong about existing code roughly a third of the time).
+Break the ask into concrete tasks: exists / new / modified. Verify the brief's claims about current state against the code — briefs are wrong about existing code roughly a third of the time.
 
-### 2. Calibrate from git history (the step that makes this real)
-Mine the repo's history for comparable completed work:
+### 2. Calibrate from git history
 ```bash
 git log --oneline --since="6 months ago" -- <relevant paths>
-# find a comparable feature's first and last commit:
-git log --reverse --format="%ad %s" --date=short -- <feature path> | head -5
-git log --format="%ad %s" --date=short -- <feature path> | head -5
+# elapsed time for a comparable feature: first and last commit
+git log --reverse --format="%ad %s" --date=short -- <feature path> | head -3
+git log --format="%ad %s" --date=short -- <feature path> | head -3
 ```
-Compute observed rates: features/week, endpoints/week, elapsed days per comparable unit. This is THIS person's throughput with THEIR tooling. Use it as the unit price.
+Derive observed rates (endpoints/week, elapsed days per comparable unit). That is the unit price.
 
 ### 3. Price by analogy
-For each new task, find the closest shipped analog: same shape, same layer, similar surface area (compare line counts of implementation + tests). New endpoint ≈ measured cost of the last similar endpoint. New page ≈ the last similar page. State the analog next to every number.
+For each new task, name the closest shipped analog — same shape, same layer, similar size (compare implementation + test line counts). The analog goes in the evidence column next to the number.
 
 ### 4. Split compressible from wall-clock-bound
-Two categories, priced differently:
-- **Compressible** (AI-parallelizable): patterned code, CRUD, tests-on-a-template, bulk rewiring. Apply the measured accelerated rate.
-- **Wall-clock-bound** (does not compress): verification and QA passes, deploy/cutover rehearsals, design-review rounds with a human, third-party approval waits, meetings, monitoring windows, data-migration dry runs. Price these at human pace no matter how fast the code writes.
+- **Compressible** (parallelizable): patterned code, CRUD, template tests, bulk rewiring → measured accelerated rate.
+- **Wall-clock-bound**: QA passes, deploy rehearsals, human design-review rounds, third-party approval waits, meetings, monitoring windows, migration dry runs → human pace, regardless of how fast the code writes.
 
-Mislabeling category 2 as category 1 is the single biggest source of blown quotes.
+Mislabeling the second as the first is the single biggest source of blown quotes.
 
-### 5. Risk as explicit line items
-Contingency is not padding hidden inside tasks. Name each risk (unproven integration, data migration with no rollback, dependency on a third party's schedule) and give it its own priced line. The client can then choose which risks to fund.
+### 5. Risk as its own line items
+Contingency is not padding hidden inside tasks. Name each risk (unproven integration, migration without rollback, third-party schedule) and price it separately so the client can choose which risks to fund.
 
-### 6. Output format
-A table per phase: task · hours (range, never a point) · evidence for the number. Then: total range, midpoint, calendar time at observed velocity, earliest client-visible milestone, and a stated-assumptions list (design readiness, access, decisions pending). End with the billing-frame note: if the freelancer bills attention-hours while running parallel sessions, say so — output-equivalent and hours-at-desk are different numbers, and mixing frames mid-project is the only wrong choice.
+## Output template
+```
+| Task | Hours (range) | Evidence |
+|---|---|---|
+| New billing page | 4–6 | analog: settings page, 5.2h logged, 310 LoC |
+| Webhook handler  | 6–9 | LOW-CONFIDENCE: no analog in repo |
+| Risk: Stripe test-mode approval wait | 0–4 (wall-clock) | third-party |
+
+Total: 22–31h · midpoint 26h · calendar: ~2 weeks at observed velocity
+First client-visible milestone: <what, when>
+Assumptions: <design ready / access granted / decisions pending>
+Billing frame: <attention-hours vs. hours-at-desk — state it once, never mix>
+Divergence from prior estimate (if any): <theirs vs. yours, and why>
+```
+
+## Red flags — STOP, you are guessing
+- A number appeared before you looked at any history
+- "A typical Stripe integration is about…"
+- You read the client's budget first and are now "sanity-checking" it
+- Every task got the same AI-speedup discount
+- A point estimate instead of a range
+- Contingency is a percentage, not named risks
 
 ## Failure modes this prevents
 - The confident generic number (40h for "add auth") with no basis
 - Anchoring on the client's hoped-for budget or a prior estimate
-- Uniform "AI makes everything 3× faster" discounts that ignore wall-clock-bound work
-- Contingency smeared invisibly across tasks so nothing can be negotiated
+- Uniform "AI makes everything 3× faster" discounts on wall-clock-bound work
+- Contingency smeared across tasks so nothing can be negotiated
 - Point estimates that read as promises

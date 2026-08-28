@@ -1,0 +1,17 @@
+{
+  "name": "freelance-skills",
+  "owner": {
+    "name": "Cale Lamb",
+    "url": "https://github.com/calelamb"
+  },
+  "description": "Skills for the second job of freelancing: quoting, scoping, client updates, invoices, deploy verification, and taking over other people's systems.",
+  "plugins": [
+    {
+      "name": "freelance-skills",
+      "source": "./",
+      "description": "Agent skills for freelance software engineers — quote from evidence, learn client codebases fast, verify deploys, triage bugs, write client updates and invoices, capture dev handoffs.",
+      "category": "productivity",
+      "keywords": ["freelance", "consulting", "estimation", "client-communication", "deploy-verification"]
+    }
+  ]
+}

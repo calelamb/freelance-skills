@@ -1,0 +1,34 @@
+{
+  "name": "freelance-skills",
+  "version": "0.2.0",
+  "description": "Agent skills for freelance software engineers — quote from evidence, learn client codebases fast, verify deploys, triage bugs, write client updates and invoices, capture dev handoffs.",
+  "author": {
+    "name": "Cale Lamb",
+    "url": "https://github.com/calelamb"
+  },
+  "homepage": "https://github.com/calelamb/freelance-skills",
+  "repository": "https://github.com/calelamb/freelance-skills",
+  "license": "MIT",
+  "keywords": [
+    "freelance",
+    "consulting",
+    "estimation",
+    "quoting",
+    "client-communication",
+    "deploy-verification",
+    "bug-triage",
+    "onboarding",
+    "handoff",
+    "invoicing"
+  ],
+  "skills": [
+    "./skills/client-onboarding",
+    "./skills/quote-job",
+    "./skills/scope-check",
+    "./skills/bug-triage",
+    "./skills/deploy-verify",
+    "./skills/status-update",
+    "./skills/invoice-prep",
+    "./skills/dev-handoff"
+  ]
+}

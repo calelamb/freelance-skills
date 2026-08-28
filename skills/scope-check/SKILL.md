@@ -1,23 +1,32 @@
 ---
 name: scope-check
-description: Restate a client's request back to them before starting multi-step work — what they want, what "done" looks like, what's explicitly out. Use when the user receives a client ask (Slack/email/ticket) that will take more than an hour, or before starting any ambiguous request.
+description: Use when a client request arrives (Slack, email, ticket, call notes) that will take more than an hour of work, before any code is written — especially requests phrased as outcomes ("make it better", "fix the dashboard") rather than specifics.
 ---
 
 # Scope check — restate before you build
 
-The most expensive work a freelancer does is the right solution to the wrong request. Ambiguity discovered at delivery costs a full round trip; ambiguity discovered before starting costs one message. This skill turns every multi-step client ask into a confirmation message first.
+The most expensive work a freelancer does is the right solution to the wrong request. Ambiguity found at delivery costs a full round trip; ambiguity found before starting costs one message.
 
 ## Procedure
 
-1. **Extract the ask** from wherever it arrived (Slack thread, email, ticket). Quote the client's actual words — paraphrase drift is where scope creep starts.
+1. **Extract the ask verbatim.** Quote the client's actual words — paraphrase drift is where scope creep starts.
 2. **Write the restatement** in exactly this shape:
-   > My read: (1) you want **[specific deliverable]**, (2) done looks like **[observable outcome the client can check]**, (3) NOT in scope this round: **[the adjacent things they might be assuming]**. Confirm before I start?
-3. **Surface the forks.** If the request has a genuine either/or (which environment, which of two behaviors, rebuild vs patch), list the options with one-line trade-offs and your recommendation. Don't silently pick.
-4. **Flag the invisible costs** the client can't see from outside: migrations, third-party approval waits, testing time on money paths. If done right, these appear in the confirmation, not the invoice dispute.
-5. **Wait for the yes** on anything ambiguous. For requests that are genuinely unambiguous, skip the ceremony — this skill is for the other 60%.
+   > My read: (1) you want **[specific deliverable]**, (2) done looks like **[observable outcome you can check yourself]**, (3) NOT in this round: **[the adjacent things you might be assuming]**. Confirm before I start?
+3. **Surface the forks.** Genuine either/or (which environment, which of two behaviors, rebuild vs patch)? List options with one-line trade-offs and your recommendation. Never silently pick.
+4. **Flag invisible costs** the client can't see from outside: migrations, third-party approval waits, testing on money paths. They belong in the confirmation, not the invoice dispute.
+5. **Wait for the yes.** Draft the message for the user to send; do not start building on an assumed answer.
+
+## When to skip it
+Requests that are genuinely unambiguous (a typo, a specific one-line change with a clear target). If you're unsure whether it's ambiguous, it is — this skill is for the other 60%.
 
 ## Calibration
-The restatement should take under five minutes to produce. If writing it takes longer, that itself is the signal: the request is more ambiguous than anyone realized, and you just saved a build-iterate-rebuild cycle.
+The restatement should take under five minutes. If it takes longer, that *is* the finding: the request is more ambiguous than anyone realized, and you just saved a build-iterate-rebuild cycle.
+
+## Red flags — STOP and restate
+- "I'll just start and adjust when they respond"
+- The user is in a hurry, so you filled in the blanks yourself
+- The "done" criterion is something only you can observe
+- You picked one branch of a fork because it seemed obvious
 
 ## Failure modes this prevents
 - Three rounds of rework because "make the dashboard better" meant something specific
