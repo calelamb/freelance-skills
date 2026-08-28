@@ -1,7 +1,7 @@
 {
   "name": "freelance-skills",
-  "version": "0.2.0",
-  "description": "Agent skills for freelance software engineers — quote from evidence, learn client codebases fast, verify deploys, triage bugs, write client updates and invoices, capture dev handoffs.",
+  "version": "0.3.0",
+  "description": "24 agent skills for freelance software engineers \u2014 the full engagement lifecycle: vet, quote, contract, onboard, scope, build, deploy, communicate, bill, and close out.",
   "author": {
     "name": "Cale Lamb",
     "url": "https://github.com/calelamb"
@@ -22,13 +22,29 @@
     "invoicing"
   ],
   "skills": [
+    "./skills/access-request",
+    "./skills/billing-model",
+    "./skills/bug-triage",
+    "./skills/change-request",
+    "./skills/client-education",
     "./skills/client-onboarding",
+    "./skills/client-vetting",
+    "./skills/context-switch",
+    "./skills/contract-review",
+    "./skills/deploy-verify",
+    "./skills/dev-handoff",
+    "./skills/estimate-postmortem",
+    "./skills/expense-and-time-tagging",
+    "./skills/incident-response-solo",
+    "./skills/invoice-prep",
+    "./skills/late-payment-followup",
+    "./skills/project-closeout",
+    "./skills/proposal-write",
     "./skills/quote-job",
     "./skills/scope-check",
-    "./skills/bug-triage",
-    "./skills/deploy-verify",
+    "./skills/security-baseline-audit",
     "./skills/status-update",
-    "./skills/invoice-prep",
-    "./skills/dev-handoff"
+    "./skills/subcontractor-brief",
+    "./skills/weekly-review"
   ]
 }

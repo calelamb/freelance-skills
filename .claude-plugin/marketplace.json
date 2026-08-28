@@ -9,9 +9,15 @@
     {
       "name": "freelance-skills",
       "source": "./",
-      "description": "Agent skills for freelance software engineers — quote from evidence, learn client codebases fast, verify deploys, triage bugs, write client updates and invoices, capture dev handoffs.",
+      "description": "24 agent skills for freelance software engineers \u2014 the full engagement lifecycle: vet, quote, contract, onboard, scope, build, deploy, communicate, bill, and close out.",
       "category": "productivity",
-      "keywords": ["freelance", "consulting", "estimation", "client-communication", "deploy-verification"]
+      "keywords": [
+        "freelance",
+        "consulting",
+        "estimation",
+        "client-communication",
+        "deploy-verification"
+      ]
     }
   ]
 }

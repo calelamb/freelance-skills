@@ -1,6 +1,6 @@
 ---
 name: deploy-verify
-description: Use immediately after any deploy (Heroku, Vercel, PM2/SSH, Docker, CI-driven), or when the user asks whether a deploy worked, before reporting "deployed" or "shipped" to anyone.
+description: Use when a deploy has just been run, on any platform (Heroku, Vercel, PM2/SSH, Docker, CI-driven), or when the user asks whether a deploy worked, before reporting "deployed" or "shipped" to anyone.
 ---
 
 # Deploy verification — deploys are claims until proven
